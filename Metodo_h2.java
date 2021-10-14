@@ -10,14 +10,13 @@ public class Metodo_h2 {
 			beneficioTotal += cs[0][i];
 		}
 		
-		for (int i = 1; i < cs.length; i++){ //Recorro a partir de la primera fila de asignaturas
-			
+		for (int i = 1; i < cs.length; i++){ 			//Recorro a partir de la primera fila de asignaturas	
 			for(int j = 0; j < cs[0].length && diasExtra > 0 ; j++ ) {
-				beneficioTotal += cs[i][j];	//Voy guardando el primero de cada asignatura mientras me queden dias
+				beneficioTotal += cs[i][j];		//Voy guardando el primero de cada asignatura mientras me queden dias
+				beneficioTotal -= cs[i - 1][j]; 	// Quito del beneficio total la iteracion anterior
 				diasExtra-= i;				//Resto un día del total de días extra
 			}
 		}
-		
 		return beneficioTotal;
 	}
 }
