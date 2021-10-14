@@ -14,7 +14,7 @@ public class Metodo_h2 {
 			
 			for(int j = 0; j < cs[0].length && diasExtra > 0 ; j++ ) {
 				beneficioTotal += cs[i][j];	//Voy guardando el primero de cada asignatura mientras me queden dias
-				diasExtra-= 1;				//Resto un día del total de días extra
+				diasExtra-= i;				//Resto un día del total de días extra
 			}
 		}
 		
