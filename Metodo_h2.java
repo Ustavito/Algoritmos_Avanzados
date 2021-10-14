@@ -1,5 +1,3 @@
-package practica2;
-
 public class Metodo_h2 {
 	
 	public static int h2(int[][] cs) {
