@@ -33,7 +33,15 @@ public class Metodo_h1
             }
             else d--;
             totalCalificaciones += max;
-        }  
+            calificacionesPorAsig[i] = max;
+        }
+        imprimir(calificacionesPorAsig); 
         return totalCalificaciones;
     } 
+
+    public static void imprimir(int[] calificaciones){
+        for (int i = 0; i < calificaciones.length; i++){
+            System.out.print(calificaciones [i] + " ");
+        }
+    }
 }
