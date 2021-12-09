@@ -168,12 +168,43 @@ public class Practica5 {
 
     // Método programación dinámica (Práctica 5)
 
+    public static int calificacionesPd(int[][] cs){
 
+        //declaración de variables
+
+        int a = cs[0].length;
+        int f = cs.length;
+        int d = a + f - 1;
+        int e = d - a;
+        return asigRec(cs, 0, a, d, e);
+    }
+
+    private static int asigRec(int[][] cs, int i, int a, int d, int e) {
+        if (i == a){
+            return 0;
+        }
+        else{
+            int maximaSumaCalificaciones = -1;
+            for (int k = i; k <= e; k++){
+                int valor = cs[k+1][i] + asigRec(cs, i + 1, a, d - (k + 1), e);
+                if (valor > maximaSumaCalificaciones){
+                    maximaSumaCalificaciones = valor;
+                }
+            }
+            return maximaSumaCalificaciones;
+        }
+    }
 
     public static void imprimir(int[] calificaciones){
         for (int i = 0; i < calificaciones.length; i++){
             System.out.print(calificaciones[i] + " ");
         }
+    }
+
+    public static void main(String[] args) {
+        int matriz[][] = {{4,3,5,2},{4,5,6,4},{5,6,8,7}};
+        System.out.println(calificacionesBacktracking(matriz));
+        System.out.println(calificacionesPd(matriz));
     }
 
 
