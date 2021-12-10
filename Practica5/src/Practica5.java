@@ -176,22 +176,25 @@ public class Practica5 {
         int f = cs.length;
         int d = a + f - 1;
         int e = d - a;
-        return asigRec(cs, 0, a, d, e);
+        return suma(cs, 0, a, d, e);
     }
 
-    private static int asigRec(int[][] cs, int i, int a, int d, int e) {
+    private static int suma(int[][] cs, int i, int a, int d, int e) {
         if (i == a){
             return 0;
         }
         else{
-            int maximaSumaCalificaciones = -1;
-            for (int k = i; k <= e; k++){
-                int valor = cs[k+1][i] + asigRec(cs, i + 1, a, d - (k + 1), e);
-                if (valor > maximaSumaCalificaciones){
-                    maximaSumaCalificaciones = valor;
+            int maxSumaCalificaciones = -1;
+            int sum = -1;
+            for (int k = 0; k <= e; k++){
+                if ((d - (k + 1) >= 0) && (d - (k + 1) >= a - i - 1)) {// condición de validez
+                    sum = suma(cs, i + 1, a, d - (k + 1), e) + cs[k][i];
+                    if (sum > maxSumaCalificaciones){
+                        maxSumaCalificaciones = sum;
+                    }
                 }
             }
-            return maximaSumaCalificaciones;
+            return maxSumaCalificaciones;
         }
     }
 
@@ -199,12 +202,15 @@ public class Practica5 {
         for (int i = 0; i < calificaciones.length; i++){
             System.out.print(calificaciones[i] + " ");
         }
+        System.out.println();
     }
 
     public static void main(String[] args) {
         int matriz[][] = {{4,3,5,2},{4,5,6,4},{5,6,8,7}};
-        System.out.println(calificacionesBacktracking(matriz));
-        System.out.println(calificacionesPd(matriz));
+        int resultado = calificacionesBacktracking(matriz);
+        System.out.println(resultado);
+        resultado = calificacionesPd(matriz);
+        System.out.println(resultado);
     }
 
 
