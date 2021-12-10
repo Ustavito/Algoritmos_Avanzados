@@ -179,6 +179,23 @@ public class Practica5 {
         return suma(cs, 0, a, d, e);
     }
 
+    public static int calificacionesPdTab(int[][] cs){
+        //declaración de variables
+
+        int a = cs[0].length;
+        int f = cs.length;
+        int d = a + f - 1;
+        int e = d - a;
+
+        int m [][]= new int [d][a+1];
+        /*
+        for (int i = 0; i <= e; i++){// casos base
+            m[a][i] = 0;
+        }
+        */
+        return 0;
+    }
+
     private static int suma(int[][] cs, int i, int a, int d, int e) {
         if (i == a){
             return 0;
