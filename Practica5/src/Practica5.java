@@ -207,15 +207,17 @@ public class Practica5 {
 
         int m [][]= new int [a+1][d+1];
 
-        for (int i = 0; i <= e; i++){// casos base
+        /*for (int i = 0; i <= e; i++){// casos base
             m[a][i] = 0;
-        }
+        }*/
+
         int col = 1;
         int r = e;
         int c = 0;
         int sum = 0;
         int fila = 0;
-        for (int i = a-1; i >= 0; i--){
+
+        for (int i = a-1; i >= 0; i--){// casos recursivos
             for (int j = col; j <= col + r; j++){
                 for (int k = e; k >= 0; k--){
                     if ((j - (k + 1) >= 0) && (j - (k + 1) >= a - i - 1)) {// condición de validez
@@ -237,6 +239,7 @@ public class Practica5 {
             }
             c++;
         }
+
         return m[0][d];
     }
 
