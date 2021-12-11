@@ -169,7 +169,6 @@ public class Practica5 {
     // Método programación dinámica (Práctica 5)
 
     public static int calificacionesPd(int[][] cs){
-
         //declaración de variables
 
         int a = cs[0].length;
@@ -177,23 +176,6 @@ public class Practica5 {
         int d = a + f - 1;
         int e = d - a;
         return suma(cs, 0, a, d, e);
-    }
-
-    public static int calificacionesPdTab(int[][] cs){
-        //declaración de variables
-
-        int a = cs[0].length;
-        int f = cs.length;
-        int d = a + f - 1;
-        int e = d - a;
-
-        int m [][]= new int [d][a+1];
-        /*
-        for (int i = 0; i <= e; i++){// casos base
-            m[a][i] = 0;
-        }
-        */
-        return 0;
     }
 
     private static int suma(int[][] cs, int i, int a, int d, int e) {
@@ -215,6 +197,49 @@ public class Practica5 {
         }
     }
 
+    public static int calificacionesPdTab(int[][] cs){
+        //declaración de variables
+
+        int a = cs[0].length;
+        int f = cs.length;
+        int d = a + f - 1;
+        int e = d - a;
+
+        int m [][]= new int [a+1][d+1];
+
+        for (int i = 0; i <= e; i++){// casos base
+            m[a][i] = 0;
+        }
+        int col = 1;
+        int r = e;
+        int c = 0;
+        int sum = 0;
+        int fila = 0;
+        for (int i = a-1; i >= 0; i--){
+            for (int j = col; j <= col + r; j++){
+                for (int k = e; k >= 0; k--){
+                    if ((j - (k + 1) >= 0) && (j - (k + 1) >= a - i - 1)) {// condición de validez
+                        sum = m[i+1][c+fila] + cs[k][i];
+                        if (sum > m[i][j]){
+                            m[i][j] = sum;
+                        }
+                        fila += 1;
+                    }
+                }
+                fila = 0;
+            }
+            if (i == 1){
+                r = 0;
+                col = d;
+            }
+            else{
+                col++;
+            }
+            c++;
+        }
+        return m[0][d];
+    }
+
     public static void imprimir(int[] calificaciones){
         for (int i = 0; i < calificaciones.length; i++){
             System.out.print(calificaciones[i] + " ");
@@ -227,6 +252,8 @@ public class Practica5 {
         int resultado = calificacionesBacktracking(matriz);
         System.out.println(resultado);
         resultado = calificacionesPd(matriz);
+        System.out.println(resultado);
+        resultado = calificacionesPdTab(matriz);
         System.out.println(resultado);
     }
 
