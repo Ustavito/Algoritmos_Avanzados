@@ -127,7 +127,7 @@ public class P6 {
         for (int i = 1; i < ps.length; i++){ //partimos de que las restantes cajas tienen máxima capacidad
             cajas[i] = c;
         }
-        int j = n - 1;
+        int j = 0;
         int posicionAInsertar;
         /* Algoritmo probabilista */
         for (int i = 1; i < ps.length; i++){
@@ -138,12 +138,14 @@ public class P6 {
                  do{
                      posicionAInsertar = (int) (Math.random() * (j + 1));
                  }while(cajas[posicionAInsertar] - ps[i] < 0);
+                 j = posicionAInsertar;
              }
              else{ //tenemos que crear una nueva caja
                  j = n;
                  n++; //se incrementa el número de cajas
              }
              cajas[j] -= ps[i];
+             j = n - 1;
         }
         return n;
     }
@@ -154,9 +156,17 @@ public class P6 {
         System.out.println(menosCajasProb(vector, 10));
         int[] vector2 = {2, 3, 6, 7, 1, 1};
         System.out.println(menosCajasProb(vector2, 7));
-         */
         int[] vector3 = {2, 3, 4, 5};
-        System.out.println(menosCajasProb(vector3, 7));
+        int result = menosCajasProb(vector3, 7);
+        System.out.println(result);
         System.out.println(menosCajasBack(vector3, 7));
+         */
+
+        int [] vector = {5, 2, 4, 1, 8, 2};
+        int resultado = menosCajasProb(vector, 10);
+        int resultado2 = menosCajasBack(vector, 10);
+        System.out.println(resultado);
+        System.out.println(resultado2);
+
     }
 }
